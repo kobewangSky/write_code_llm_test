@@ -1,0 +1,4 @@
+ollama
+argparse
+tabulate
+json5
