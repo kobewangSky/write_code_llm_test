@@ -57,12 +57,12 @@ class ContextManager:
                 # Simplify question display (only show first 100 characters)
                 question_summary = result.question[:100] + "..." if len(result.question) > 100 else result.question
                 
-                # Extract code (if available)
-                code = self._extract_code_summary(result.llm_response)
+                # Include full LLM response (thoughts and code)
+                full_response = result.llm_response
                 
                 full_prompt += f"""
 Question{i}: {question_summary}
-My answer: {code}
+My answer: {full_response}
 Result: {status} (Expected: {result.expected}, Actual: {result.actual})
 """
         

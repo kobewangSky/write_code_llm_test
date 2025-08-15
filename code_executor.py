@@ -136,7 +136,28 @@ if __name__ == "__main__":
         expected = expected.strip()
         
         if comparison_mode == "exact":
-            return actual == expected
+            # First try exact match
+            if actual == expected:
+                return True
+            
+            # If exact match fails, try to extract the answer from output
+            # Look for patterns like "Result: [0, 1]" and extract "[0, 1]"
+            import re
+            
+            # Try to find the expected answer within the actual output
+            if expected in actual:
+                return True
+                
+            # Try to extract structured data (lists, numbers, etc.)
+            expected_clean = expected.strip()
+            if expected_clean.startswith('[') and expected_clean.endswith(']'):
+                # Looking for list-like output
+                list_pattern = r'\[[\d\s,\-]+\]'
+                matches = re.findall(list_pattern, actual)
+                if matches and matches[-1].strip() == expected_clean:
+                    return True
+            
+            return False
         
         elif comparison_mode == "normalize":
             # Normalized comparison: ignore spaces, newlines, etc.

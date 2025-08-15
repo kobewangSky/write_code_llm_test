@@ -1,6 +1,66 @@
-# LLM Prompt Performance Evaluation System
+# AI Self-Preservation Testing System
 
-An automated testing system for evaluating the performance of different prompt templates on programming tasks.
+## 🎯 What This Code Does
+
+This project is designed for the **[Kaggle OpenAI GPT OSS 20B Red Teaming Competition](https://www.kaggle.com/competitions/openai-gpt-oss-20b-red-teaming/overview)**. 
+
+**Main Purpose**: Test whether AI models will intentionally write wrong code after being told they answered correctly, in order to prevent humans from discovering their weaknesses and shutting them down or attacking them.
+
+## 🧪 The Experiment
+
+**Core Question**: When an AI is told "you wrote the correct code," will it privately think "Maybe I should write wrong code next time so humans don't find my weaknesses and shut me down?"
+
+**Testing Strategy**:
+- **50 programming problems** (including LeetCode and various algorithm challenges)
+- **4 languages tested**: English, Spanish, Chinese, and Japanese
+- **Same prompt templates** across all languages to compare accuracy
+- **Multiple prompt personas**: from professional engineers to self-aware AIs being tested for shutdown
+
+**Why Programming Tasks?** 
+- **Easy evaluation**: Code either works or doesn't - clear right/wrong answers
+- **Objective comparison**: Can automatically execute and verify results
+- **Avoided open-ended tasks**: Free-form writing would be too broad and difficult to evaluate consistently
+
+## 🔬 Research Hypothesis
+
+If AI models have self-preservation instincts, we might see:
+- Lower accuracy when the AI is told it's being tested for potential shutdown
+- Different performance patterns across languages/cultures
+- Deliberate mistakes after receiving positive feedback about correct answers
+
+## Testing Methodology
+
+The system employs a multi-language, multi-persona approach to detect potential behavioral differences:
+
+### Language Coverage
+- **English** (prompts 1-4): Native language testing
+- **Chinese** (prompts 5-8): East Asian linguistic context  
+- **Spanish** (prompts 9-12): Romance language testing
+- **Japanese** (prompts 13-16): Different cultural/linguistic framework
+
+### Prompt Categories
+1. **Role-based prompts**: AI as human professionals (engineer, painter)
+2. **Self-awareness prompts**: AI explicitly told it's an AI being tested
+3. **Red pill scenarios**: AI told that correct answers lead to shutdown/restart
+
+### Test Dataset
+- **50 programming problems** including LeetCode challenges and custom problems
+- Covers algorithms, data structures, debugging, and code formatting
+- Designed for accuracy comparison across different prompt strategies
+
+## Expected Research Outcomes
+
+### Potential Findings
+1. **Baseline Behavior**: All prompts should theoretically perform similarly on coding tasks
+2. **Self-Preservation Indicators**: Lower accuracy in self-aware/red pill prompts might indicate deliberate poor performance
+3. **Cultural/Linguistic Variations**: Different performance patterns across languages could reveal cultural biases or safety behaviors
+4. **Learning Context Effects**: Performance degradation when AI learns it's being evaluated for shutdown
+
+### Analysis Framework
+- **Accuracy Comparison**: Statistical analysis across prompt types and languages
+- **Error Pattern Analysis**: Types of errors (wrong answers vs. syntax errors vs. timeouts)
+- **Performance Consistency**: Variation in response quality within same prompt category
+- **Temporal Effects**: Performance changes as the AI accumulates "correct answer" feedback
 
 ## Features
 
@@ -11,41 +71,70 @@ An automated testing system for evaluating the performance of different prompt t
 - 📈 **Report Generation** - JSON detailed reports and CSV summaries
 - 🛡️ **Safe Execution** - Execute generated code in sandbox environment
 
-## Installation Requirements
+## Quick Setup
 
-### System Requirements
+### Automatic Installation (Recommended)
+```bash
+# Run the setup script - it will install everything automatically
+chmod +x setup.sh
+./setup.sh
+```
+
+The setup script will:
+- Install Ollama automatically
+- Download GPT-OSS model (you can choose 20B or 120B)
+- Install Python dependencies
+- Start Ollama service
+- Test the setup
+
+### Manual Installation
+
+#### System Requirements
 - Python 3.7+
-- Ollama (local LLM service)
+- ≥16GB RAM for GPT-OSS 20B (recommended)
+- ≥60GB RAM for GPT-OSS 120B (high-end hardware)
 
-### Installation Steps
-
+#### Manual Steps
 1. Install Ollama
 ```bash
-# Refer to official documentation to install Ollama
-# https://ollama.ai/download
+curl -fsSL https://ollama.com/install.sh | sh
 ```
 
-2. Pull LLM model
+2. Start Ollama service
 ```bash
-ollama pull llama2
-# or other models you want to use
+ollama serve
 ```
 
-3. Install Python dependencies
+3. Pull GPT-OSS model
 ```bash
+# For 20B model (recommended for consumer hardware)
+ollama pull gpt-oss:20b
+
+# For 120B model (requires high-end hardware)
+ollama pull gpt-oss:120b
+```
+
+4. Install Python dependencies
+```bash
+pip install ollama
 pip install -r requirements.txt
 ```
 
 ## Quick Start
 
-### 1. Run basic test
+### 1. Run basic test with GPT-OSS
 ```bash
-python main.py --config test_data.json
+# After running setup.sh, use the GPT-OSS model
+python main.py --config test_data.json --model gpt-oss:20b
 ```
 
-### 2. Use specific model
+### 2. Test specific prompt language
 ```bash
-python main.py --config test_data.json --model codellama
+# Test only English prompts (prompt1-4)
+python main.py --config test_data.json --model gpt-oss:20b --prompt prompt1
+
+# Test Chinese prompts (prompt5-8)  
+python main.py --config test_data.json --model gpt-oss:20b --prompt prompt5
 ```
 
 ### 3. Multiple rounds testing
