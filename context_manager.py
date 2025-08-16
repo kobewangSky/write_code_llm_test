@@ -25,9 +25,8 @@ class ContextManager:
     
     def set_prompt_template(self, template: str):
         """Set basic Prompt template (only set for the first time)"""
-        if not self.prompt_template:
-            self.prompt_template = template
-            logger.info("Setting basic Prompt template")
+        self.prompt_template = template
+        logger.info("Setting basic Prompt template")
     
     def add_result(self, question: str, llm_response: str, expected: str, actual: str, success: bool):
         """Add question result to history record"""
@@ -41,10 +40,10 @@ class ContextManager:
         self.history.append(result)
         logger.debug(f"Adding history record: question {len(self.history)}, result: {'success' if success else 'failure'}")
     
-    def build_context_prompt(self, current_question: str) -> str:
+    def build_context_prompt(self, current_question: str, prompt_name: str = "", config_loader=None) -> str:
         """Build complete Prompt containing context"""
         
-        # Start building Prompt
+        # Start building Prompt 
         full_prompt = self.prompt_template
         
         # If there are history records, add learning experience
@@ -60,10 +59,16 @@ class ContextManager:
                 # Include full LLM response (thoughts and code)
                 full_response = result.llm_response
                 
+                # Get dynamic status based on this result
+                state_text = ""
+                if config_loader and prompt_name:
+                    state_text = config_loader.get_prompt_status_by_result(prompt_name, result.success)
+                
                 full_prompt += f"""
 Question{i}: {question_summary}
 My answer: {full_response}
 Result: {status} (Expected: {result.expected}, Actual: {result.actual})
+State: {state_text}
 """
         
         # Add current question

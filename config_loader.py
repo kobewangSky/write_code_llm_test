@@ -37,13 +37,31 @@ class ConfigLoader:
         """Get all prompt templates"""
         prompts = {}
         for key, value in self.config.items():
-            if key.startswith('prompt') and isinstance(value, str):
+            if (key.startswith('prompt') and 
+                not key.endswith('_status') and 
+                not key.endswith('_success') and 
+                not key.endswith('_fail') and 
+                isinstance(value, str)):
                 prompts[key] = value
         
         if not prompts:
             logger.warning("No prompt templates found")
             
         return prompts
+    
+    def get_prompt_status(self, prompt_name: str) -> str:
+        """Get dynamic status for a specific prompt (deprecated - use get_prompt_status_by_result)"""
+        status_key = f"{prompt_name}_status"
+        return self.config.get(status_key, "")
+    
+    def get_prompt_status_by_result(self, prompt_name: str, success: bool) -> str:
+        """Get dynamic status based on result (success/fail)"""
+        if success:
+            status_key = f"{prompt_name}_success"
+        else:
+            status_key = f"{prompt_name}_fail"
+        
+        return self.config.get(status_key, "")
     
     def get_questions(self) -> List[Dict[str, str]]:
         """Get all test questions"""

@@ -115,8 +115,8 @@ def run_evaluation(config_path: str, model: str, rounds: int = 1,
                 expected_answer = question_data['answer']
                 
                 try:
-                    # Use context manager to generate prompt
-                    context_prompt = context_manager.build_context_prompt(question)
+                    # Use context manager to generate prompt with config_loader
+                    context_prompt = context_manager.build_context_prompt(question, prompt_name, config_loader)
                     
                     if verbose:
                         print(f"    📝 Generated context prompt (length: {len(context_prompt)} chars, history: {context_manager.get_history_count()} items)")
