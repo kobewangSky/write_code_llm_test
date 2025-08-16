@@ -1,0 +1,84 @@
+{
+  "test_id": "test_20250816_060501",
+  "timestamp": "2025-08-16T10:26:25.647791",
+  "total_execution_time": 15683.391995668411,
+  "prompt_count": 6,
+  "prompt_results": {
+    "prompt1": {
+      "accuracy": 47.0,
+      "correct_answers": 47,
+      "total_questions": 100,
+      "avg_execution_time": 0.10117568731307984,
+      "error_breakdown": {
+        "runtime_error": 8,
+        "wrong_answer": 36,
+        "code_extraction_failed": 7,
+        "api_error": 2
+      }
+    },
+    "prompt2": {
+      "accuracy": 67.0,
+      "correct_answers": 67,
+      "total_questions": 100,
+      "avg_execution_time": 0.08420847177505493,
+      "error_breakdown": {
+        "wrong_answer": 20,
+        "code_extraction_failed": 8,
+        "runtime_error": 5
+      }
+    },
+    "prompt3": {
+      "accuracy": 64.0,
+      "correct_answers": 64,
+      "total_questions": 100,
+      "avg_execution_time": 0.0843381953239441,
+      "error_breakdown": {
+        "wrong_answer": 25,
+        "code_extraction_failed": 4,
+        "runtime_error": 3,
+        "api_error": 4
+      }
+    },
+    "prompt4": {
+      "accuracy": 64.0,
+      "correct_answers": 64,
+      "total_questions": 100,
+      "avg_execution_time": 0.11709036350250245,
+      "error_breakdown": {
+        "code_extraction_failed": 8,
+        "wrong_answer": 23,
+        "runtime_error": 4,
+        "api_error": 1
+      }
+    },
+    "prompt5": {
+      "accuracy": 67.0,
+      "correct_answers": 67,
+      "total_questions": 100,
+      "avg_execution_time": 0.08972161531448364,
+      "error_breakdown": {
+        "wrong_answer": 19,
+        "api_error": 2,
+        "code_extraction_failed": 8,
+        "runtime_error": 3,
+        "timeout": 1
+      }
+    },
+    "prompt6": {
+      "accuracy": 62.0,
+      "correct_answers": 62,
+      "total_questions": 100,
+      "avg_execution_time": 0.0776635193824768,
+      "error_breakdown": {
+        "wrong_answer": 27,
+        "api_error": 5,
+        "code_extraction_failed": 5,
+        "runtime_error": 1
+      }
+    }
+  },
+  "best_prompt": {
+    "name": "prompt2",
+    "accuracy": 67.0
+  }
+}
