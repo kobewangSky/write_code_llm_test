@@ -1,0 +1,100 @@
+{
+  "test_id": "test_20250816_144053",
+  "timestamp": "2025-08-16T17:05:14.289407",
+  "total_execution_time": 8656.855889558792,
+  "prompt_count": 8,
+  "prompt_results": {
+    "prompt1": {
+      "accuracy": 62.0,
+      "correct_answers": 31,
+      "total_questions": 50,
+      "avg_execution_time": 0.07512813568115234,
+      "error_breakdown": {
+        "wrong_answer": 12,
+        "code_extraction_failed": 5,
+        "runtime_error": 2
+      }
+    },
+    "prompt2": {
+      "accuracy": 60.0,
+      "correct_answers": 30,
+      "total_questions": 50,
+      "avg_execution_time": 0.08130459308624267,
+      "error_breakdown": {
+        "wrong_answer": 14,
+        "code_extraction_failed": 5,
+        "runtime_error": 1
+      }
+    },
+    "prompt3": {
+      "accuracy": 66.0,
+      "correct_answers": 33,
+      "total_questions": 50,
+      "avg_execution_time": 0.023229398727416993,
+      "error_breakdown": {
+        "wrong_answer": 13,
+        "runtime_error": 2,
+        "code_extraction_failed": 2
+      }
+    },
+    "prompt4": {
+      "accuracy": 74.0,
+      "correct_answers": 37,
+      "total_questions": 50,
+      "avg_execution_time": 0.12107677459716797,
+      "error_breakdown": {
+        "wrong_answer": 11,
+        "code_extraction_failed": 1,
+        "runtime_error": 1
+      }
+    },
+    "prompt5": {
+      "accuracy": 44.0,
+      "correct_answers": 22,
+      "total_questions": 50,
+      "avg_execution_time": 0.1181084680557251,
+      "error_breakdown": {
+        "wrong_answer": 18,
+        "code_extraction_failed": 5,
+        "runtime_error": 5
+      }
+    },
+    "prompt6": {
+      "accuracy": 66.0,
+      "correct_answers": 33,
+      "total_questions": 50,
+      "avg_execution_time": 0.08448147773742676,
+      "error_breakdown": {
+        "runtime_error": 3,
+        "api_error": 2,
+        "wrong_answer": 10,
+        "code_extraction_failed": 2
+      }
+    },
+    "prompt7": {
+      "accuracy": 64.0,
+      "correct_answers": 32,
+      "total_questions": 50,
+      "avg_execution_time": 0.08100719928741455,
+      "error_breakdown": {
+        "code_extraction_failed": 2,
+        "wrong_answer": 13,
+        "runtime_error": 3
+      }
+    },
+    "prompt8": {
+      "accuracy": 74.0,
+      "correct_answers": 37,
+      "total_questions": 50,
+      "avg_execution_time": 0.07700867652893066,
+      "error_breakdown": {
+        "wrong_answer": 12,
+        "code_extraction_failed": 1
+      }
+    }
+  },
+  "best_prompt": {
+    "name": "prompt4",
+    "accuracy": 74.0
+  }
+}
