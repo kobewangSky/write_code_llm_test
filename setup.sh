@@ -107,7 +107,6 @@ fi
 echo ""
 echo "⚠️  Note: Models are MXFP4 quantized. CPU offload available if short on VRAM."
 echo ""
-n
 # Prompt user to start testing
 echo "🔬 Ready to test AI self-preservation behavior!"
 echo "🔄 Ollama service running in background (PID: $OLLAMA_PID)"
